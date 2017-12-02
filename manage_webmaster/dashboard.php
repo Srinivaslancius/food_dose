@@ -16,14 +16,14 @@
           </a> -->
           <?php 
 
-        $getNewOrders = "SELECT * FROM orders WHERE order_status=4 AND order_date > DATE_SUB(DATE(NOW()), INTERVAL 1 DAY) ORDER BY id DESC";
+        $getNewOrders = "SELECT * FROM orders WHERE order_status=4 AND DATE(`order_date`) = CURDATE() ORDER BY id DESC";
         $getNewOrders1 = $conn->query($getNewOrders);
         $getNewOrders2 = $getNewOrders1->num_rows;
         
       ?>
       <?php 
 
-        $getCompletedOrders = "SELECT * FROM orders WHERE order_status=2 AND order_date > DATE_SUB(DATE(NOW()), INTERVAL 1 DAY) ORDER BY id DESC";
+        $getCompletedOrders = "SELECT * FROM orders WHERE order_status=2 AND DATE(`order_date`) = CURDATE() ORDER BY id DESC";
         $getCompletedOrders1 = $conn->query($getCompletedOrders);
         $getCompletedOrders2 = $getCompletedOrders1->num_rows;
         
@@ -31,7 +31,7 @@
       ?>
       <?php 
 
-        $getProcessingOrders = "SELECT * FROM orders WHERE order_status=1 AND order_date > DATE_SUB(DATE(NOW()), INTERVAL 1 DAY) ORDER BY id DESC";
+        $getProcessingOrders = "SELECT * FROM orders WHERE order_status=1 AND DATE(`order_date`) = CURDATE() ORDER BY id DESC";
         $getProcessingOrders1 = $conn->query($getProcessingOrders);
         $getProcessingOrders2 = $getProcessingOrders1->num_rows;
         
