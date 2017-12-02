@@ -211,7 +211,7 @@ function addInput(divName) {
     selectHTML="<div class='input-field form-group col-md-4'><select required name='weight_type_id[]' id='form-control-3' class='custom-select' style='display:block !important'><option value=''>Select Weighy Type</option>";
     var newTextBox = "<div class='form-group col-md-3'><input type='text' onkeypress='return isNumberKey(event)' onclick='addInput('dynamicInput');' required name='product_price[]' class='form-control' id='form-control-2' placeholder='Product Price'></div>";
     
-    var newTextBox1 = "<div class='form-group col-md-3'><input type='text' onkeypress='return isNumberKey(event)' onclick='addInput('dynamicInput');' required name='discount_price[]' class='form-control' id='form-control-2' placeholder='Discount Price'></div>";
+    var newTextBox1 = "<div class='form-group col-md-3'><input type='text' onkeypress='return isNumberKey(event)' onclick='addInput('dynamicInput');' required name='discount_price[]' class='form-control' id='form-control-2' placeholder='Offer Price'></div>";
     removeBox="<div class='input-field  form-group col-md-2'><a class='remove_button' ><img src='remove-icon.png'/></a></div><div class='clearfix'></div>";
     for(i = 0; i < choices.length; i = i + 1) {
         selectHTML += "<option value='" + choices[i] + "'>" + choices_names[i] + "</option>";
