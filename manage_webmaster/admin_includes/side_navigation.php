@@ -156,7 +156,7 @@
                 </span>
                 <span class="menu-text">Customers</span>
               </a>
-            </li>
+            </li>-->
             <li  class="<?php if($page_name == 'mobile_push_notifications.php') { echo "active"; } ?>">
               <a href="mobile_push_notifications.php" aria-haspopup="true">
                 <span class="menu-icon">
@@ -164,7 +164,7 @@
                 </span>
                 <span class="menu-text">Mobile Push Notifications</span>
               </a>
-            </li> -->
+            </li>
             
             <li  class="<?php if($page_name == 'customer_enqueries.php') { echo "active"; } ?>">
               <a href="customer_enqueries.php" aria-haspopup="true">
