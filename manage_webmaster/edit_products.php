@@ -20,9 +20,9 @@ if (!isset($_POST['submit']))  {
               $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
               $getImgUnlink = getImageUnlink('product_image','products','id',$id,$target_dir);
                 //Send parameters for img val,tablename,clause,id,imgpath for image ubnlink from folder
-      if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
       
-      $sql1 = "UPDATE products SET product_name = '$product_name',category_id ='$category_id',sub_category_id='$sub_category_id',product_image='$fileToUpload', availability_id ='$availability_id', status = '$status' WHERE id = '$id'"; 
+             $sql1 = "UPDATE products SET product_name = '$product_name',category_id ='$category_id',sub_category_id='$sub_category_id',product_image='$fileToUpload', availability_id ='$availability_id', status = '$status' WHERE id = '$id'"; 
             if ($conn->query($sql1) === TRUE) {
                 echo "Record updated successfully";
             } else {
@@ -30,36 +30,19 @@ if (!isset($_POST['submit']))  {
               }
               $result1=$conn->query($sql1);
                       //Delete weight and prices
-            $del = "DELETE FROM product_weight_prices WHERE product_id = '$id' ";
-            $result = $conn->query($del);
-
-            $product_weights = $_REQUEST['weight_type_id'];
-            foreach($product_weights as $key=>$value){
-
-            $product_weights1 = $_REQUEST['weight_type_id'][$key];
-            $product_price = $_REQUEST['product_price'][$key];
-            $discount_price = $_REQUEST['discount_price'][$key]; 
-            $sql = "INSERT INTO product_weight_prices ( `product_id`,`weight_type_id`,`product_price`,`discount_price`) VALUES ('$id','$product_weights1','$product_price','$discount_price')";
-            $result = $conn->query($sql);
-            }
-             if($result==1){
-                echo "<script type='text/javascript'>window.location='products.php?msg=success'</script>";
-            } else {
-                echo "<script type='text/javascript'>window.location='products.php?msg=fail'</script>";
-            }
                     //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
                 } else {
                     echo "Sorry, there was an error uploading your file.";
                 }
-            }  else {
+      }  else {
                 $sql2 = "UPDATE products SET product_name = '$product_name',category_id ='$category_id',sub_category_id='$sub_category_id', availability_id ='$availability_id', status = '$status' WHERE id = '$id'"; 
                 if ($conn->query($sql2) === TRUE) {
-                echo "Record updated successfully";
-            } else {
+                  echo "Record updated successfully";
+                } else {
                 echo "Error updating record: " . $conn->error;
-              }
+               }
               $result1=$conn->query($sql2);
-                      //Delete weight and prices
+        }          //Delete weight and prices
             $del = "DELETE FROM product_weight_prices WHERE product_id = '$id' ";
             $result = $conn->query($del);
 
@@ -68,7 +51,8 @@ if (!isset($_POST['submit']))  {
 
             $product_weights1 = $_REQUEST['weight_type_id'][$key];
             $product_price = $_REQUEST['product_price'][$key];  
-            $sql = "INSERT INTO product_weight_prices ( `product_id`,`weight_type_id`,`product_price`) VALUES ('$id','$product_weights1','$product_price')";
+            $discount_price = $_REQUEST['discount_price'][$key];
+            $sql = "INSERT INTO product_weight_prices ( `product_id`,`weight_type_id`,`product_price`,`discount_price`) VALUES ('$id','$product_weights1','$product_price','$discount_price')";
             $result = $conn->query($sql);
             }
              if($result==1){
@@ -76,7 +60,7 @@ if (!isset($_POST['submit']))  {
             } else {
                 echo "<script type='text/javascript'>window.location='products.php?msg=fail'</script>";
             }
-            }
+            
           }
 ?>
 
@@ -123,7 +107,7 @@ if (!isset($_POST['submit']))  {
                     <div class="help-block with-errors"></div>
                   </div>
                   <?php $id = $_GET['pid'];
-                    $getQry = "SELECT * FROM product_weight_prices where product_id = '$id'";
+                    $getQry = "SELECT * FROM product_weight_prices where product_id = '$id' ORDER BY id desc";
                     $result2 = $conn->query($getQry);
                 ?>
                      
@@ -248,32 +232,6 @@ $(document).ready(function() {
 </script>
 
 <script type="text/javascript">
-$(function(){
-    $(document).on('click','.ajax_img_del',function(){
-        var del_id= $(this).attr('id');
-        var $ele = $(this).parent().parent();
-        var del_confirm = confirm("Are you sure you want to delete?");
-        if(del_confirm == true){
-        $.ajax({
-            type:'POST',
-            url:'delete_image.php',
-            data:{'del_id':del_id},
-            success: function(data){
-                 if(data=="YES"){
-                    location.reload();
-                 }else{
-                    alert("Deleted Failed");  
-                 }
-             }
-        });
-        }else{
-            location.reload();
-         }
-    });
-});
-</script>
-<script type="text/javascript">
-
 //Script allowed only numeric value
 function isNumberKey(evt){
     var charCode = (evt.which) ? evt.which : event.keyCode
