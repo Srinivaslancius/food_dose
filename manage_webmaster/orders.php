@@ -39,10 +39,11 @@
             ?>
           </div>
           <div class="panel-body">
-            <div class="table-responsive">
+            <div class="table-responsive" style="overflow-x: hidden;">
             <?php $sql = "SELECT * FROM order_status";
             $result = $conn->query($sql);
           ?>
+          <div class ="row">
           <div class="form-group col-md-4">            
             <select id="select-order-status" class="custom-select">
               <option value="">Select Order Status</option>
@@ -51,11 +52,13 @@
               <?php } ?>
             </select>           
           </div>
-          <div class="clear_fix"></div>
           <p id="date_filter">
             <span id="date-label-from" class="date-label">From: </span><input class="date_range_filter date" type="text" id="datepicker_from" />
             <span id="date-label-to" class="date-label">To:<input class="date_range_filter date" type="text" id="datepicker_to" />
           </p>
+        </div>
+          <!-- <div class="clear_fix"></div> -->
+          
               <table class="table table-striped table-bordered dataTable" id="table-1">
                 <thead>
                   <tr>
