@@ -36,12 +36,15 @@ $id = $_GET['uid'];
                   </div>
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Email</label>
-                    <input type="email" name="admin_email" class="form-control" id="form-control-2" placeholder="Email" data-error="Please enter valid email address." required value="<?php echo $getUsers1['admin_email'];?>">
+                    <input type="email" name="admin_email" class="form-control" id="user_input" placeholder="Email" data-error="Please enter valid email address." required value="<?php echo $getUsers1['admin_email'];?>" onkeyup="checkUserAvailTest()">
+                    <span id="input_status" style="color: red;"></span>
                     <div class="help-block with-errors"></div>
+                    <input type="hidden" id="table_name" value="admin_users">
+                    <input type="hidden" id="column_name" value="admin_email">
                   </div>
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Password</label>
-                    <input type="password" name="admin_password" class="form-control" id="form-control-2" placeholder="Password" data-error="Please enter Password." required value="<?php echo decryptPassword($getUsers1['admin_password']);?>">
+                    <input type="password" name="admin_password" class="form-control" id="form-control-2" placeholder="Password" data-error="Please enter Password(minimum 8 characters)." minlength="8" required value="<?php echo decryptPassword($getUsers1['admin_password']);?>">
                     <div class="help-block with-errors"></div>
                   </div>
                   <?php $getStatus = getDataFromTables('user_status',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>

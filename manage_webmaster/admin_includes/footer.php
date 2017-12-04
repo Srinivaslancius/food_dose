@@ -62,6 +62,30 @@
         }, 2000);
       });
     </script>
+    <script type="text/javascript">
+      function checkUserAvailTest() {
+        var userInput = document.getElementById("user_input").value;
+        var table = document.getElementById("table_name").value;
+        var columnName = document.getElementById("column_name").value;
+        if (userInput){
+          $.ajax({
+          type: "POST",
+          url: "common_user_avail_check.php",
+          data: {
+            userInput:userInput,table:table,columnName:columnName,
+          },
+          success: function (response) {
+            if (response > 0){
+              $('#input_status').html("<span>Already Exist</span>");
+              $("#user_input").val("");
+            } else {
+              $('#input_status').html("");        
+            }
+          }
+          });          
+        }
+      }
+    </script>
   </body>
   <style>
     .modal-body{

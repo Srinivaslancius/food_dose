@@ -31,6 +31,12 @@
         $row = $result->fetch_assoc();        
         return $row;
     }
+    function checkUserAvail($table,$clause,$value){
+        global $conn;
+        $sql = "SELECT * FROM `$table` WHERE `$clause`= '$value' ";
+        $result = $conn->query($sql);
+        return $result->num_rows;
+    }
     /*Common function with where out where get all data from query */
     function getAllData($table)
     {

@@ -15,7 +15,7 @@
                     <th>Category Name</th>
                     <th>Ingredients</th>
                     <th>How To Prepare</th>
-                    <th>Userid</th>
+                    <th>User Id</th>
                     <th>Created</th>
                     <th>Status</th>
                   </tr>

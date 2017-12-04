@@ -30,8 +30,11 @@ $id = $_GET['wid'];
                 <form data-toggle="validator" method="POST">
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Weight Type</label>
-                    <input type="text" name="weight_type" class="form-control" id="weight_type" placeholder="Weight Type" data-error="Please enter Name" required value="<?php echo $getWeights1['weight_type'];?>">
+                    <input type="text" name="weight_type" class="form-control" id="user_input" placeholder="Weight Type" data-error="Please enter Name" required value="<?php echo $getWeights1['weight_type'];?>" onkeyup="checkUserAvailTest()">
+                    <span id="input_status" style="color: red;"></span>
                     <div class="help-block with-errors"></div>
+                    <input type="hidden" id="table_name" value="product_weights">
+                    <input type="hidden" id="column_name" value="weight_type">
                   </div>
 
                   <?php $getStatus = getDataFromTables('user_status',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>

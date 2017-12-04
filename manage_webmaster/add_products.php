@@ -27,12 +27,13 @@ if (!isset($_POST['submit']))  {
 
     $product_weights = $_REQUEST['weight_type_id'];
     foreach($product_weights as $key=>$value){
-
         $product_weights1 = $_REQUEST['weight_type_id'][$key];
         $product_price = $_REQUEST['product_price'][$key];
-        $discount_price = $_REQUEST['discount_price'][$key]; 
+        $discount_price = $_REQUEST['discount_price'][$key];
+        if($product_weights1 && $product_price && $discount_price !='') {
         $sql = "INSERT INTO product_weight_prices ( `product_id`,`weight_type_id`,`product_price`,`discount_price`) VALUES ('$last_id','$product_weights1','$product_price','$discount_price')";
         $result = $conn->query($sql);
+        }
     }
       if( $result == 1){
           echo "<script type='text/javascript'>window.location='products.php?msg=success'</script>";
@@ -99,12 +100,12 @@ if (!isset($_POST['submit']))  {
                   </div>
                   <div class="form-group col-md-3">
                     <label for="form-control-2" class="control-label">Product Price</label>
-                    <input type="text" class="form-control" id="price" name="product_price[]" placeholder="Product Price" data-error="Please enter product price." required onkeypress="return isNumberKey(event)">
+                    <input type="text" class="form-control" id="product_price" name="product_price[]" placeholder="Product Price" data-error="Please enter product price." required onkeypress="return isNumberKey(event)">
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="form-group col-md-3">
                     <label for="form-control-2" class="control-label">Offer Price</label>
-                    <input type="text" class="form-control" id="price" name="discount_price[]" placeholder="Offer Price" data-error="Please enter offer price." required onkeypress="return isNumberKey(event)">
+                    <input type="text" class="form-control" id="offer_price" name="discount_price[]" placeholder="Offer Price" data-error="Please enter offer price." required onkeypress="return isNumberKey(event)">
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="form-group col-md-2">
@@ -188,8 +189,8 @@ function addInput(divName) {
     newDiv.className = 'new_appen_class';
     var selectHTML = "";    
     selectHTML="<div class='input-field form-group col-md-4'><select required name='weight_type_id[]' id='form-control-3' class='custom-select' style='display:block !important'><option value=''>Select Weighy Type</option>";
-    var newTextBox = "<div class='form-group col-md-3'><input type='text' onkeypress='return isNumberKey(event)' onclick='addInput('dynamicInput');' required name='product_price[]' class='form-control' id='form-control-2' placeholder='Product Price'></div>";
-    var newTextBox1 = "<div class='form-group col-md-3'><input type='text' onkeypress='return isNumberKey(event)' onclick='addInput('dynamicInput');' required name='discount_price[]' class='form-control' id='form-control-2' placeholder='offer Price'></div>";
+    var newTextBox = "<div class='form-group col-md-3'><input type='text' onkeypress='return isNumberKey(event)' onclick='addInput('dynamicInput');' required name='product_price[]' class='form-control' id='product_price1' placeholder='Product Price' required></div>";
+    var newTextBox1 = "<div class='form-group col-md-3'><input type='text' onkeypress='return isNumberKey(event)' onclick='addInput('dynamicInput');' required name='discount_price[]' class='form-control' id='offer_price1' placeholder='offer Price' required></div>";
     
         removeBox="<div class='input-field  form-group col-md-2'><a class='remove_button' ><img src='remove-icon.png'/></a></div><div class='clearfix'></div>";
     for(i = 0; i < choices.length; i = i + 1) {
@@ -198,6 +199,26 @@ function addInput(divName) {
     selectHTML += "</select></div>";
     newDiv.innerHTML = selectHTML+ " &nbsp;" +newTextBox +" " +newTextBox1 +" " +removeBox;
     document.getElementById(divName).appendChild(newDiv);
+
+    $(document).ready(function() {
+
+    //End
+    //Check validation for prodcut price empty or not and calaculate selling price
+    $('#offer_price1').keyup(function() {
+        if($('#product_price1').val()==''){
+            alert("Please Enter Product Price");
+            $('#offer_price1').val('');
+            return false;
+        } 
+        
+        if(parseInt($('#offer_price1').val()) >= parseInt($('#product_price1').val())) {
+            alert("Please Enter Offer Price value less than Product Price");
+            $('#offer_price1').val('');
+            
+        }
+    });
+    //End   
+  });
 }
 
 $(document).ready(function() {
@@ -239,4 +260,26 @@ function getSubSubCategories(val) {
     }
     });
 }
+</script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+    //End
+    //Check validation for prodcut price empty or not and calaculate selling price
+    $('#offer_price').keyup(function() {
+        if($('#product_price').val()==''){
+            alert("Please Enter Product Price");
+            $('#offer_price').val('');
+            return false;
+        } 
+        
+        if(parseInt($('#offer_price').val()) >= parseInt($('#product_price').val())) {
+            alert("Please Enter Offer Price value less than Product Price");
+            $('#offer_price').val('');
+            
+        }
+    });
+    //End   
+  });
 </script>
