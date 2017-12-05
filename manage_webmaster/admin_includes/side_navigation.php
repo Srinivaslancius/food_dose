@@ -117,6 +117,14 @@
                 <span class="menu-text">Orders</span>
               </a>
             </li>
+            <li  class="<?php if($page_name == 'take_away_orders.php') { echo "active"; } ?>">
+              <a href="take_away_orders.php" aria-haspopup="true">
+                <span class="menu-icon">
+                   <i class="zmdi zmdi-shopping-cart-plus zmdi-hc-fw"></i>
+                </span>
+                <span class="menu-text">Take Away Orders</span>
+              </a>
+            </li>
             <!-- <li  class="<?php if($page_name == 'lkp_states.php' || $page_name == 'add_lkp_states.php' || $page_name == 'edit_lkp_states.php' ) { echo "active"; } ?>">
               <a href="lkp_states.php" aria-haspopup="true">
                 <span class="menu-icon">
