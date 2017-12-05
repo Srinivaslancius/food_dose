@@ -9,6 +9,7 @@ if (!isset($_POST['submit']))  {
     $category_id = $_POST['category_id'];
     $sub_category_id = $_POST['sub_category_id'];
     $availability_id = $_POST['availability_id'];
+    $description = $_POST['description'];
     $fileToUpload = $_FILES["fileToUpload"]["name"];
     $status = $_POST['status'];
     $created_at = date("Y-m-d h:i:s");
@@ -21,7 +22,7 @@ if (!isset($_POST['submit']))  {
     $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-      $sql1 = "INSERT INTO products (`product_name`,`category_id`,`sub_category_id`,`availability_id`,`product_image`,`status`,`created_by`,`created_at`) VALUES ('$product_name','$category_id','$sub_category_id','$availability_id','$fileToUpload','$status','$created_by','$created_at')";
+      $sql1 = "INSERT INTO products (`product_name`,`category_id`,`product_info`,`sub_category_id`,`availability_id`,`product_image`,`status`,`created_by`,`created_at`) VALUES ('$product_name','$category_id','$description','$sub_category_id','$availability_id','$fileToUpload','$status','$created_by','$created_at')";
      $result1 = $conn->query($sql1);
      $last_id = $conn->insert_id;
 
@@ -108,6 +109,7 @@ if (!isset($_POST['submit']))  {
                     <input type="text" class="form-control" id="offer_price" name="discount_price[]" placeholder="Offer Price" data-error="Please enter offer price." required onkeypress="return isNumberKey(event)">
                     <div class="help-block with-errors"></div>
                   </div>
+
                   <div class="form-group col-md-2">
                      <a href="javascript:void(0);"  ><img style="margin-top: 25px;" src="add-icon.png" onkeypress="return isNumberKey(event)" onclick="addInput('dynamicInput');"/></a>
                   </div>
@@ -120,7 +122,11 @@ if (!isset($_POST['submit']))  {
                     <div class="help-block with-errors"></div>
                   </div> -->
                   
-                  
+                  <div class="form-group">
+                    <label for="form-control-2" class="control-label">Description</label>
+                    <textarea name="description" class="form-control" id="description" placeholder="Description" data-error="This field is required." required></textarea>
+                    <div class="help-block with-errors"></div>
+                  </div>
                   <div class="form-group">
                     <label for="form-control-4" class="control-label">Image</label>
                     <img id="output" height="100" width="100"/>
@@ -283,3 +289,12 @@ $(document).ready(function() {
     //End   
   });
 </script>
+<script src="//cdn.ckeditor.com/4.7.0/full/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'description' ); 
+</script>
+<style type="text/css">
+    .cke_top, .cke_contents, .cke_bottom {
+        border: 1px solid #333;
+    }
+</style>

@@ -8,6 +8,7 @@ if (!isset($_POST['submit']))  {
     $category_id = $_POST['category_id'];
     $sub_category_id = $_POST['sub_category_id'];
     $availability_id = $_POST['availability_id'];
+    $description = $_POST['description'];
     $fileToUpload = $_FILES["fileToUpload"]["name"];
     $status = $_POST['status'];
     $created_at = date("Y-m-d h:i:s");
@@ -22,7 +23,7 @@ if (!isset($_POST['submit']))  {
                 //Send parameters for img val,tablename,clause,id,imgpath for image ubnlink from folder
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
       
-             $sql1 = "UPDATE products SET product_name = '$product_name',category_id ='$category_id',sub_category_id='$sub_category_id',product_image='$fileToUpload', availability_id ='$availability_id', status = '$status' WHERE id = '$id'"; 
+             $sql1 = "UPDATE products SET product_name = '$product_name',product_info = '$description',category_id ='$category_id',sub_category_id='$sub_category_id',product_image='$fileToUpload', availability_id ='$availability_id', status = '$status' WHERE id = '$id'"; 
             if ($conn->query($sql1) === TRUE) {
                 echo "Record updated successfully";
             } else {
@@ -35,7 +36,7 @@ if (!isset($_POST['submit']))  {
                     echo "Sorry, there was an error uploading your file.";
                 }
       }  else {
-                $sql2 = "UPDATE products SET product_name = '$product_name',category_id ='$category_id',sub_category_id='$sub_category_id', availability_id ='$availability_id', status = '$status' WHERE id = '$id'"; 
+                $sql2 = "UPDATE products SET product_name = '$product_name', product_info = '$description',category_id ='$category_id',sub_category_id='$sub_category_id', availability_id ='$availability_id', status = '$status' WHERE id = '$id'"; 
                 if ($conn->query($sql2) === TRUE) {
                   echo "Record updated successfully";
                 } else {
@@ -142,7 +143,11 @@ if (!isset($_POST['submit']))  {
                          <a href="javascript:void(0);"  ><span style="color:#000;font-size:14px;">Choose More:&nbsp;<img src="add-icon.png" onkeypress="return isNumberKey(event)" onclick="addInput('dynamicInput');" /></span></a>
                       </div>
                     <div id="dynamicInput" class="input-field col s12"></div>
-                  
+                <div class="form-group">
+                    <label for="form-control-2" class="control-label">Description</label>
+                    <textarea name="description" class="form-control" id="description" data-error="This field is required." required><?php echo $getProducts['product_info'];?></textarea>
+                    <div class="help-block with-errors"></div>
+                  </div>
                  <div class="form-group">
                     <label for="form-control-4" class="control-label">Image</label>
                     <img src="<?php echo $base_url . 'uploads/product_images/'.$getProducts['product_image'] ?>"  id="output" height="100" width="100"/>
@@ -263,3 +268,12 @@ $(document).ready(function() {
     //End   
   });
 </script>
+<script src="//cdn.ckeditor.com/4.7.0/full/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'description' ); 
+</script>
+<style type="text/css">
+    .cke_top, .cke_contents, .cke_bottom {
+        border: 1px solid #333;
+    }
+</style>
