@@ -25,7 +25,10 @@
                 <form data-toggle="validator" method="POST" autocomplete="off">
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">State Name</label>
-                    <input type="text" name="state_name" class="form-control" id="form-control-2" placeholder="State Name" data-error="Please enter State Name" required>
+                    <input type="text" name="state_name" class="form-control" id="user_input" placeholder="State Name" data-error="Please enter State Name" required onkeyup="checkUserAvailTest()">
+                    <span id="input_status" style="color: red;"></span>
+                    <input type="hidden" id="table_name" value="lkp_states">
+                    <input type="hidden" id="column_name" value="state_name">
                     <div class="help-block with-errors"></div>
                   </div>
                   <?php $getStatus = getDataFromTables('user_status',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
