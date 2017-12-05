@@ -86,5 +86,5 @@ if (!isset($_POST['submit']))  {
             <hr>
           </div>
         </div>
-      </div> 
+  
 <?php include_once 'admin_includes/footer.php'; ?>
