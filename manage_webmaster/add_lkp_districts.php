@@ -42,7 +42,10 @@ if (!isset($_POST['submit']))  {
 
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">District Name</label>
-                    <input type="text" name="district_name" class="form-control" id="form-control-2" placeholder="District Name" data-error="Please enter District Name" required>
+                    <input type="text" name="district_name" class="form-control" id="user_input" placeholder="District Name" data-error="Please enter District Name" onkeyup="checkUserAvailTest()" required>
+                    <span id="input_status" style="color: red;"></span>
+                    <input type="hidden" id="table_name" value="lkp_districts">
+                    <input type="hidden" id="column_name" value="district_name">
                     <div class="help-block with-errors"></div>
                   </div>
 
