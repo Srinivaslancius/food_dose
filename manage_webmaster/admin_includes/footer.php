@@ -63,6 +63,37 @@
       });
     </script>
     <script type="text/javascript">
+    function getDistricts(val) { 
+        $.ajax({
+        type: "POST",
+        url: "get_districts.php",
+        data:'lkp_state_id='+val,
+        success: function(data){
+            $("#lkp_district_id").html(data);
+        }
+        });
+    }function getCities(val) { 
+        $.ajax({
+        type: "POST",
+        url: "get_cities.php",
+        data:'lkp_district_id='+val,
+        success: function(data){
+            $("#lkp_city_id").html(data);
+        }
+        });
+    }
+    function getCities(val) { 
+        $.ajax({
+        type: "POST",
+        url: "get_cities.php",
+        data:'lkp_district_id='+val,
+        success: function(data){
+            $("#lkp_city_id").html(data);
+        }
+        });
+    }
+    </script>
+    <script type="text/javascript">
       function checkUserAvailTest() {
         var userInput = document.getElementById("user_input").value;
         var table = document.getElementById("table_name").value;

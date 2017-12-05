@@ -23,6 +23,12 @@
         $result = $conn->query($sql);
         return $result;
     }
+    function getAllDataWithStatus($table,$status)  {
+        global $conn;
+        $sql="select * from `$table` WHERE `status` = '$status' ";
+        $result = $conn->query($sql); 
+        return $result;
+    }
     function getIndividualDetails($id,$table,$clause)
     {
         global $conn;

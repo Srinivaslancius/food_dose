@@ -9,6 +9,7 @@
     $id=1;
     $admin_title = $_POST['admin_title'];  
     $email = $_POST['email'];
+    $gst = $_POST['gst'];
     $fb_link = $_POST['fb_link'];
     $twitter_link = $_POST['twitter_link'];
     $gplus_link = $_POST['gplus_link'];
@@ -30,7 +31,7 @@
         $getImgUnlink = getImageUnlink('logo','site_settings','id',$id,$target_dir);
         //Send parameters for img val,tablename,clause,id,imgpath for image ubnlink from folder
         if (move_uploaded_file($_FILES["logo"]["tmp_name"], $target_file)) {
-            $sql = "UPDATE `site_settings` SET admin_title = '$admin_title', email='$email', fb_link='$fb_link', twitter_link='$twitter_link', gplus_link='$gplus_link', mobile='$mobile', logo = '$logo', footer_text='$footer_text', address='$address' WHERE id = '$id' ";
+            $sql = "UPDATE `site_settings` SET admin_title = '$admin_title',gst='$gst', email='$email', fb_link='$fb_link', twitter_link='$twitter_link', gplus_link='$gplus_link', mobile='$mobile', logo = '$logo', footer_text='$footer_text', address='$address' WHERE id = '$id' ";
             if($conn->query($sql) === TRUE){
                echo "<script type='text/javascript'>window.location='site_settings.php?msg=success'</script>";
             } else {
@@ -41,7 +42,7 @@
             echo "Sorry, there was an error uploading your file.";
         }
     }  else {
-        $sql = "UPDATE `site_settings` SET admin_title = '$admin_title', email='$email', fb_link='$fb_link', twitter_link='$twitter_link', gplus_link='$gplus_link', mobile='$mobile',footer_text='$footer_text', address='$address' WHERE id = '$id' ";
+        $sql = "UPDATE `site_settings` SET admin_title = '$admin_title', gst='$gst',email='$email', fb_link='$fb_link', twitter_link='$twitter_link', gplus_link='$gplus_link', mobile='$mobile',footer_text='$footer_text', address='$address' WHERE id = '$id' ";
         if($conn->query($sql) === TRUE){
            echo "<script type='text/javascript'>window.location='site_settings.php?msg=success'</script>";
         } else {
@@ -67,6 +68,11 @@
                   $getSiteSettingsData = $getSiteSettings->fetch_assoc(); ?>
                     <label for="form-control-2" class="control-label">Admin Title</label>
                     <input type="text" name="admin_title" class="form-control" id="form-control-2" placeholder="Admin Title" data-error="Please enter a valid Title." value="<?php echo $getSiteSettingsData['admin_title'];?>" required>
+                    <div class="help-block with-errors"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="form-control-2" class="control-label">GST(%)</label>
+                    <input type="text" name="gst" class="form-control" id="form-control-2" placeholder="GST(%)" data-error="Please enter GST(%)." value="<?php echo $getSiteSettingsData['gst'];?>" required>
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="form-group">
