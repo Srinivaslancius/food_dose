@@ -51,7 +51,10 @@ if (!isset($_POST['submit']))  {
 
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">City Name</label>
-                    <input type="text" name="city_name" class="form-control" id="form-control-2" placeholder="City Name" data-error="Please enter City Name" required>
+                    <input type="text" name="city_name" class="form-control" id="user_input" placeholder="City Name" data-error="Please enter City Name" required onkeyup="checkUserAvailTest()">
+                    <span id="input_status" style="color: red;"></span>
+                    <input type="hidden" id="table_name" value="lkp_cities">
+                    <input type="hidden" id="column_name" value="city_name">
                     <div class="help-block with-errors"></div>
                   </div>
 

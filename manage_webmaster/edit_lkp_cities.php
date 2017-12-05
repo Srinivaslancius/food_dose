@@ -56,7 +56,10 @@ if (!isset($_POST['submit'])) {
                   </div>
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">City Name</label>
-                    <input type="text" name="city_name" class="form-control" id="form-control-2" data-error="Please enter City Name" required value="<?php echo $getCitiesData['city_name'];?>">
+                    <input type="text" name="city_name" class="form-control" id="user_input" data-error="Please enter City Name" required value="<?php echo $getCitiesData['city_name'];?>" onkeyup="checkUserAvailTest()">
+                    <span id="input_status" style="color: red;"></span>
+                    <input type="hidden" id="table_name" value="lkp_cities">
+                    <input type="hidden" id="column_name" value="city_name">
                     <div class="help-block with-errors"></div>
                   </div>
                   <?php $getStatus = getAllData('user_status');?>
