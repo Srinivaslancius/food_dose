@@ -68,7 +68,14 @@
                 <span class="menu-text">Banners</span>
               </a>
             </li>
-            
+            <li  class="<?php if($page_name == 'promo_codes.php' || $page_name == 'add_promo_codes.php' || $page_name == 'edit_promo_codes.php' ) { echo "active"; } ?>">
+              <a href="promo_codes.php" aria-haspopup="true">
+                <span class="menu-icon">
+                   <i class="zmdi zmdi-collection-image zmdi-hc-fw"></i>
+                </span>
+                <span class="menu-text">Promo Codes</span>
+              </a>
+            </li>
             <li  class="<?php if($page_name == 'content_pages.php' || $page_name == 'add_content_pages.php' || $page_name == 'edit_content_pages.php') { echo "active"; } ?>">
               <a href="content_pages.php" aria-haspopup="true">
                 <span class="menu-icon">

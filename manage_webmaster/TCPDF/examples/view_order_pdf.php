@@ -39,9 +39,9 @@ $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('Srinivas');
-$pdf->SetTitle('Palle2Patnam - Invoice');
-$pdf->SetSubject('Palle2Patnam');
-$pdf->SetKeywords('Palle2Patnam, PDF, example, test, guide');
+$pdf->SetTitle('FoodDose - Invoice');
+$pdf->SetSubject('FoodDose');
+$pdf->SetKeywords('FoodDose, PDF, example, test, guide');
 
 // set default header data
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 048', PDF_HEADER_STRING);
@@ -98,7 +98,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 $tbl .= '<table border="1" cellpadding="6" cellspacing="0" nobr="true" border-collapse: "collapse";>
  <tr>
-  <th colspan="4" align="center" style="font-weight:bold;">Order Invoice<br /> '.$getUserData['first_name'].' <br /><span style="text-align:left; font-weight:normal">Bill To : <br />'.$getUserData['address1'].' <br/> '.$getUserData['district'].'<br /> '.$getUserData['pin_code'].' <br/> <strong>'.$getUserData['order_id'].'</strong></span><p style="text-align:right; font-weight:normal">Date :  '.$getUserData['order_date'].'</p></th>
+  <th colspan="4" align="center" style="font-weight:bold;">Order  Invoice<br /> '.$getUserData['first_name'].' <br /><span style="text-align:left; font-weight:normal">Bill To : <br />'.$getUserData['address1'].' <br/> '.$getUserData['district'].'<br /> '.$getUserData['pin_code'].' <br/> <strong>'.$getUserData['order_id'].'</strong></span><p style="text-align:right; font-weight:normal">Date :  '.$getUserData['order_date'].'</p></th>
  </tr>
  <tr style="background-color: #4CAF50; color: white; font-weight:bold">
   <th align="center">Name</th>  
@@ -125,7 +125,7 @@ $tbl .='<tr style="border-bottom:0; margin: 0px;">
   <td align="center">'.$row['product_price'].'</td>
   <td align="center">'.$row['product_total_price'].'</td>
     
- </tr>'; 
+ </tr>';
  }
 $tbl .='</table>';
 $tbl .='<table border="1" cellpadding="6" cellspacing="0" nobr="true" border-collapse: "collapse";>
