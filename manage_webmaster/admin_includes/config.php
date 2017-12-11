@@ -2,16 +2,16 @@
 session_start();
 date_default_timezone_set("Asia/Kolkata"); 
 
-$setcon = 2;
-if($setcon == 1) {
+$setcon = 1;
+if($setcon == 2) {
 	$servername = "localhost";
 	$username = "lanciyqs_food_do";
 	$password = "lancius12#";
 	$dbname = "lanciyqs_food_dose";
 } else {
-	$servername = "192.168.0.110";	
+	$servername = "localhost";	
 	$username = "root";
-	$password = "root";
+	$password = "";
 	$dbname = "food_dose";
 }  
 
@@ -22,6 +22,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$base_url = "http://192.168.0.110/fooddose/";
+//$base_url = "http://lancius.in/fooddose/";
+$base_url= "http://localhost/food_dose/";
 
 ?>
